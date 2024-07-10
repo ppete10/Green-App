@@ -1,0 +1,25 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.activity-container {
+    width: 1440px;
+    display: flex;
+    justify-content: center;
+}
+
+.activity-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+td , h1, th{
+    text-align: center;
+}
+
+* {
+    font-family: "Montserrat" !important;
+  }

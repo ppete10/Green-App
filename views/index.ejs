@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OneLoveW</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+</head>
+
+<body>
+
+    <nav role="navigation">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+                <div style="padding-top: 30px;">
+                    <a href="#home">
+                        <li>Home</li>
+                    </a>
+                    <a href="/profile">
+                        <li>Profile</li>
+                    </a>
+                    <a href="/userActivities">
+                        <li>Your Activities</li>
+                    </a>
+                    <a href="/rewards">
+                        <li>Reward</li>
+                    </a>
+                    <a href="#status">
+                        <li>Status</li>
+                    </a>
+                    <a href="#leaderboard">
+                        <li>Leaderboard</li>
+                    </a>
+                    <a href="#activities">
+                        <li>Activities</li>
+                    </a>
+                    <a href="#howitworks">
+                        <li>Help</li>
+                    </a>
+                    <a href="#footer">
+                        <li>About us</li>
+                    </a>
+                </div>
+
+                <div class="navlog" style="margin-top: 500px;">
+
+                    <% if(!user) {%>
+                        <a href="/login">
+                            <li
+                                style="text-align: center;  color: #232323; padding: 8px; border-radius: 15px; background-color: white; width: 110px; margin-left: 15px;">
+                                Log in</li>
+                        </a>
+                        <a href="/register">
+                            <li
+                                style="color: #232323; width: 110px; text-align: center; text-decoration: underline; padding: 8px;margin-left: 15px;">
+                                Sign up</li>
+                        </a>
+                        <% } else {%>
+                            <a href="/logout">
+                                <li
+                                    style="text-align: center;  color: white; padding: 8px; border-radius: 15px; background-color: rgb(252, 64, 64); width: 110px; margin-left: 15px;">
+                                    Log out</li>
+                            </a>
+                            <% } %>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="home">
+
+        <div class="hero-content">
+            <p class="hero-subtitle" style="font-weight: 900; margin: 0;">JOIN THE MOVEMENT!</p>
+            <p class="hero-subtitle"
+                style=" color: rgba(255, 255, 255, 0.65); font-size: 1.25rem; padding: 0 27%; margin-top: 30px; font-weight: 500; line-height: 1.65rem;">
+                The OneLoveW is growing every day and scoring wins for the planet. Plant with us and track our progress!
+            </p>
+            <h1 class="hero-title" style="font-weight: 900;">
+                <%= totalCarbonReduced %>
+            </h1>
+            <p class="hero-subtitle"
+                style=" color: rgba(255, 255, 255, 0.65); font-size: 1.25rem; padding: 0 27%; margin-top: 0px; font-weight: 500; line-height: 1.65rem;">
+                Carbon reduced.</p>
+        </div>
+    </section>
+
+    <section class="stats-section" id="status">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-content">
+                    <span class="stat-number">1685</span>
+                    <span class="stat-label">Trash pricked.</span>
+                </div>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/31574a53e4a137dbe1cdf0baad636317f477f84f40b04946f69a81ea8adf70d5?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                    alt="Trash icon" class="stat-icon">
+            </div>
+            <div class="stat-card">
+                <div class="stat-content">
+                    <span class="stat-number">853</span>
+                    <span class="stat-label">Tree planted.</span>
+                </div>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2b388691b4665411e5b5b4b2f50ba3bac5d9d0aa05a458d5ec650d80a7d05e70?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                    alt="Tree icon" class="stat-icon">
+            </div>
+            <div class="stat-card">
+                <div class="stat-content">
+                    <span class="stat-number">
+                        <%= totalCarbonReduced %>
+                    </span>
+                    <span class="stat-label">Carbon reduced.</span>
+                </div>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cca860106e0ac5d95df58f577a4d02e873b3cc5977cd5ec651cce54ced6bb660?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                    alt="Carbon reduction icon" class="stat-icon">
+            </div>
+        </div>
+    </section>
+
+    <section class="leaderboard-section" id="leaderboard">
+        <div class="leaderboard">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/404c4b016b421a62983eb37ed24cf68dfb7a49851ee7a03fc50ece3f39a59c7a?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                alt="Leaderboard background" class="leaderboard-bg">
+            <div class="leaderboard-content">
+                <h2 class="leaderboard-title" style="font-weight: 900;">LEADERBOARD</h2>
+                <div class="leaderboard-tabs">
+                    <div>
+                        <button class="tab-active"><a href="/?sort=activityCount#leaderboard" class="active-a">MOST
+                                ACTIVITY PARTICIPATE</a></button>
+                        <button class="tab-inactive"><a href="/?sort=lastActivityDate#leaderboard"
+                                class="inactive-a">MOST
+                                RECENT</a></button>
+                    </div>
+                </div>
+                <div style="padding-bottom: 100px;">
+                    <% for (let i=0; i < Math.min(leaderboard.length, 10); i++) { %>
+                        <div class="leaderboard-list">
+                            <div class="leaderboard-item">
+                                <span class="rank">
+                                    <%= i + 1 %>
+                                </span>
+                                <img src="image/pngwing.com.png" alt="<%= leaderboard[i].name %> avatar"
+                                    class="user-avatar">
+                                <div class="user-info">
+                                    <span class="user-name">
+                                        <%= leaderboard[i].name %>
+                                    </span>
+                                </div>
+                                <div class="activity-status">
+                                    <span>
+                                        <% if (sort==='activityCount' ) { %>
+                                            <span class="user-score">
+                                                <%= leaderboard[i].activityCount %> Activies
+                                            </span>
+                                            <% } else if (sort==='lastActivityDate' ) { %>
+                                                <span class="user-score">
+                                                    <%= leaderboard[i].lastActivityDate %>
+                                                </span>
+                                                <% } %>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="how-it-works" id="howitworks">
+        <div class="how-it-works-content">
+            <h2 class="how-it-works-title" style="font-weight: 900;">HOW IT WORKS</h2>
+            <p class="how-it-works-description">To register for an activity, you need to hit the register button on
+                activities page.Each activity have their own amount of given you, each activity you participate you will
+                and point and you can use those point to exchange for multiple rewards!</p>
+            <div class="features">
+                <div class="feature">
+                    <img src="https://download-th.com/wp-content/uploads/2021/03/mnre.jpg" alt="MNRE Thailand"
+                        class="feature-icon">
+                    <h3 class="feature-title">MNRE Thailand</h3>
+                    <p class="feature-description">Slate helps you see how many more days you need to work to
+                        reach your financial goal.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://images.topnews.co.th/2023/10/WtNjT1Lc-%E0%B8%81%E0%B8%A2%E0%B8%A8-1-768x613.jpg?x-image-process=style/webp "
+                        alt="Design with real data icon" class="feature-icon">
+                    <h3 class="feature-title">กยศ. Connect</h3>
+                    <p class="feature-description">You can save volunteer hours but each activity can have different
+                        hours.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://th.bing.com/th/id/OIP.BHLg33x9_rwR5KzuoUk_BwHaEK?rs=1&pid=ImgDetMain"
+                        alt="Fastest way to take action icon" class="feature-icon" width="50px">
+                    <h3 class="feature-title">Mr.Beast</h3>
+                    <p class="feature-description">We will continue to support and donate a part of amount to make the
+                        world better.</p>
+                </div>
+            </div>
+            <div class="video-mr.beast">
+                <iframe width="899" height="534" src="https://www.youtube.com/embed/cV2gBU6hKfY?si=C-r_s-l-OE2LtULX"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                    style="margin-top: 90px;margin-bottom: 80; border-radius: 30px;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="activities-section" id="activities">
+        <div class="activities-container">
+            <h2 class="activities-title" style="font-weight: 900;">ACTIVITIES</h2>
+
+            <% const images=[ 'image/tree_plant.png' , 'image/beach_clean.png'
+                , 'image/papercraft-workshop-at-bookaroo_1000x.png' , 'image/NationalTreeDay2021.png'
+                , 'image/campaign-clean.png' , 'image/recycling-rules.png' , ]; %>
+
+                <% activities.forEach((activity, index)=> { %>
+                    <div class="activity-cards">
+                        <div class="activity-card">
+                            <h3 class="activity-title" style="font-weight: 900;">
+                                <%= activity.name %>
+                            </h3>
+                            <p class="activity-description">
+                                <%= activity.description %>
+                            </p>
+                            <div class="activity-cta">
+                                <p class="cta-info" style="margin-top: 0; margin-bottom: 0;">
+                                    Points: <%= activity.points %><br>
+                                    Participant: <%= activity.numParticipants %>
+                                </p>
+                                <% if (user) { %>
+                                    <form action="/registerActivity" method="POST" style="margin: auto 0;">
+                                        <input type="hidden" name="activityId" value="<%= activity.activityId %>">
+                                        <button type="submit" class="cta-button">Register NOW!</button>
+                                    </form>
+                                    <% } else { %>
+                                        <button class="cta-button"
+                                            style="padding: 0px 30px; height: 50px; margin-top: auto; margin-bottom: auto; background-color: rgb(176, 134, 255); border: none;">
+                                            <p class="cta-info" style="color: rgba(255, 255, 255, 0.826); margin: 0; margin-top: 0;">
+                                                Please <a href="/login"
+                                                    style="color: white; text-decoration: underline;">LOGIN</a> to
+                                                register for activities.</p>
+                                        </button>
+                                        <% } %>
+                            </div>
+                        </div>
+                        <img style="border-radius: 30px;" src="<%= images[index % images.length] %>"
+                            alt="Activity illustration" class="activity-image">
+                    </div>
+                    <% }); %>
+        </div>
+    </section>
+
+    <% if (typeof showSuccessAlert !=='undefined' && showSuccessAlert) { %>
+        <script>
+            Swal.fire({
+                title: "Good job!",
+                text: "You registered for the activity successfully!",
+                icon: "success"
+            }).then(() => {
+                window.location.href = "<%= currentUrl %>";
+            });
+        </script>
+        <% } %>
+
+            <footer class="footer" id="footer">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h3 class="footer-title">Pages</h3>
+                            <a href="#home" class="footer-link">Home</a>
+                            <a href="#status" class="footer-link">Status</a>
+                            <a href="#leaderboard" class="footer-link">Leaderboard</a>
+                            <a href="#activities" class="footer-link">Activity</a>
+                            <a href="#howitworks" class="footer-link">Help</a>
+                            <a href="#reward" class="footer-link">Reward</a>
+                            <a href="/profile" class="footer-link">Profile</a>
+                            <a href="#" class="footer-link">Contact</a>
+
+                        </div>
+                        <div class="footer-column">
+                            <h3 class="footer-title">Creater</h3>
+                            <a href="#" class="footer-link">Kittipat Srikittichai</a>
+                            <a href="#" class="footer-link">Peerapan Satitwiparawong</a>
+                            <a href="#" class="footer-link">Poremet Khantong</a>
+                        </div>
+                        <div class="footer-column">
+                            <h3 class="footer-title">Student ID</h3>
+                            <a href="#" class="footer-link">66130500091</a>
+                            <a href="#" class="footer-link">66130500119</a>
+                            <a href="#" class="footer-link">66130500056</a>
+                        </div>
+                    </div>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e8c5090c10a0aade3baeb2ae5746a3ab54c275e66dbdc8eaa8448d24012a1e02?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                                alt="Location icon" class="contact-icon">
+                            <span>XXX-XXXX-XXXXXX-XXXXX</span>
+                        </div>
+                        <div class="contact-item">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9cd7278bed2e065fccf7ca3d199041e8eea68792491932278f96e313c4fa4fb1?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                                alt="Phone icon" class="contact-icon">
+                            <span>XXX-XXX-XXXX</span>
+                        </div>
+                        <div class="social-icons">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/47eafd56652ae38af3768ea57ae0c68b8e4b13a8decc21f512d97f51a073dcef?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                                alt="Social media icon" class="social-icon">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e26b427ae5457b337e799d955af59662e5eae394686ce45727873cce994b50c5?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                                alt="Social media icon" class="social-icon">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ad09197772b43caf7e4387eb900fc14415c1e5ab108fb7fa5eeb5df942adb34c?apiKey=2ed8787130f947f887cbd3aad3ec47ac&"
+                                alt="Social media icon" class="social-icon">
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <script>
+                const urlParams = new URLSearchParams(window.location.search);
+                const logoutSuccess = urlParams.get('logout');
+
+                if (logoutSuccess === 'success') {
+                    Swal.fire({
+                        title: 'Logged Out!',
+                        text: 'You have successfully logged out.',
+                        icon: 'success'
+                    });
+                }
+            </script>
+</body>
+
+</html>

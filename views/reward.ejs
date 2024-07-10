@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./styleRewards.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+</head>
+<body>
+
+    <div>
+        <a href="/" style=" cursor: default;  position: absolute;width: 100%; height: 80px; background-color: #CCC5F7;display: flex ;align-items: center ; padding-left: 40px ;"><img src="./image/arrow.png " style="cursor: pointer;" width="50px"  alt=""></a>
+    </div>
+
+    <div class="container" style="padding-top: 100px;">
+        <div class="top-box">
+            <h1 style="margin-bottom: 30px; padding: 20px;">Your Rewards</h1>
+            <ul class="list-group">
+                <% rewards.forEach(function(reward) { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong><%= reward.name %></strong><br>
+                            <%= reward.description %>
+                        </div>
+                        <form action="/rewards/use" method="POST" class="ml-auto">
+                            <input type="hidden" name="rewardId" value="<%= reward.rewardId %>">
+                            <button type="submit" class="btn btn-danger">Use</button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="buttom-box">
+            <h1 class="mt-5" style="margin-bottom: 50px; padding-left: 20px;">Available Rewards</h1>
+            <ul class="list-group">
+                <% allRewards.forEach(function(reward) { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong><%= reward.name %></strong><br>
+                            <%= reward.description %><br>
+                            <small>Points Required: <%= reward.pointsRequired %></small>
+                        </div>
+                        <form action="/rewards/redeem" method="POST" class="ml-auto">
+                            <input type="hidden" name="rewardId" value="<%= reward.rewardId %>">
+                            <button type="submit" class="btn btn-primary">Redeem</button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+            const error = urlParams.get('error');
+            const message = urlParams.get('message');
+
+            if (success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: message,
+                });
+            } else if (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: message,
+                });
+            }
+        });
+    </script>
+</body>
+</html>

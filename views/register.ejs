@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneLoveW</title>
+
+    <link rel="stylesheet" href="styleRegister.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+</head>
+<body>
+    <a href="/" style="position: absolute;display: flex ;align-items: center ; padding-left: 40px ; padding-top: 20px;"><img src="./image/arrow.png " width="50px"  alt=""></a>
+    <main>
+        <div class="left-box">
+            <div class="left-box-info">
+                <h3 style="margin-bottom: -20px;">Create an account</h3>
+                <p style="margin: 30px; text-align: center; font-size: 15px;justify-content: center; color: gray;">Fill in the information below <br>to sign up for an account.</p>
+               
+                <form action="/register" method="POST">
+                    <div class="form-control">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-control">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-control">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="check-box">
+                        <input type="checkbox" id="agree" name="agree" required>
+                        <span>By creating an account, I agree to our <a href="#">Terms of use</a> and <a href="#">Privacy Policy</a></span>
+                    </div>
+                    <div class="sign-up">
+                        <button type="submit">Sign up</button>
+                    </div>
+                    <div class="divider">
+                        <p style="font-size: 13px; padding-left: 20px;padding-right: 20px;"> Or </p>
+                    </div>
+                    <div class="form-social-btn">
+                        <a href="#" class="google-login"><i class="fa fa-google" aria-hidden="true"></i> Sign in with Google</a>
+                        <a href="#" class="apple-login"><i class="fa fa-apple" aria-hidden="true"></i> Sign in with Apple</a>
+                    </div>
+                    <div class="form-link">
+                        <p>Have an account? <a href="login">Sign in</a></p>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <div class="right-box">
+            <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=1852&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            const message = urlParams.get('message');
+
+            if (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: message,
+                });
+            }
+        });
+    </script>
+</body>
+</html>

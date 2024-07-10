@@ -1,0 +1,541 @@
+body {
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+* {
+  font-family: "Montserrat" !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+#menuToggle {
+    display: block;
+    position: fixed; /* Change to fixed */
+    top: 50px;
+    right: 50px; /* Change to right */
+    padding: 17px 15px 13px 15px;
+    z-index: 1;
+    border-radius: 50px;
+    background-color: white;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  #menuToggle a {
+    text-decoration: none;
+    color: #232323;
+    
+    transition: color 0.3s ease;
+  }
+  
+  #menuToggle a:hover {
+    color: tomato;
+  }
+  
+  #menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    right: -5px; /* Change to right */
+    
+    cursor: pointer;
+    
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
+    
+    -webkit-touch-callout: none;
+  }
+  
+  /* Just a quick hamburger */
+  #menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    
+    background: #000000;
+    border-radius: 3px;
+    
+    z-index: 1;
+    
+    transform-origin: 4px 0px;
+    
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+                opacity 0.55s ease;
+  }
+  
+  #menuToggle span:first-child {
+    transform-origin: 0% 0%;
+  }
+  
+  #menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+  
+  /* Transform all the slices of hamburger into a crossmark. */
+  #menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+  }
+  
+  /* But let's hide the middle one. */
+  #menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+  
+  /* Oh yeah and the last one should go the other direction */
+  #menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+  
+  /* Make this absolute positioned at the top right of the screen */
+  #menu {
+    position: absolute;
+    width: 300px;
+    height: 1220px; /* Set height to 100% */
+    margin: 0;
+    padding: 50px;
+    padding-top: 75px; /* Adjust to move up */
+    
+    background: #CCC5F7;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    
+    transform-origin: 100% 0%; /* Change to 100% */
+    transform: translateX(100%); /* Change to 100% */
+    
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  }
+
+  #menu li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+  
+  /* And let's slide it in from the right and move up */
+  #menuToggle input:checked ~ ul {
+    transform: translateX(-150px) translateY(-100px); /* Slide in more and move up by 100px */
+  }
+  
+
+.hero-section {
+  height: 750px;
+  background-color: #fff;
+  padding: 0;
+  color: #7a3535;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.2px;
+  background-image: url("image/Background.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-content: center;
+
+}
+
+.hero-image {
+  width: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+  padding: 100px;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+}
+
+.hero-title {
+  font: 74px/114% "Montserrat" ,Rubik, sans-serif;
+  font-size: 7.5em;
+  color: white;
+  margin: 0;
+  margin-top: 53px;
+}
+
+
+.hero-subtitle {
+  font: 50px/80% Rubik, sans-serif;
+  color: white;
+}
+
+.stats-section {
+  padding: 40px 60px;
+  padding-bottom: 80px;
+}
+
+.stats-container {
+  margin: 0 14px 17px;
+  justify-content: space-evenly;
+  display: flex;
+  gap: 20px;
+}
+
+.stat-card {
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 31px 28px 18px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+.stat-number {
+  font: 30px Rubik, sans-serif;
+}
+
+.stat-label {
+  margin-top: 30px;
+  font: 20px Rubik, sans-serif;
+}
+
+.stat-icon {
+  width: 90px;
+  aspect-ratio: 1;
+}
+
+.leaderboard-section {
+  position: relative;
+  padding: 80px 60px 0;
+  min-height: 1828px;
+  max-width: 100%;
+}
+
+.leaderboard-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.leaderboard-content {
+  position: relative;
+  max-width: 650px;
+  margin: 9px auto 0;
+  padding-bottom: 20px;
+}
+
+.leaderboard-title {
+  color: #000;
+  text-align: center;
+  font: 500 75px/150% Rubik, sans-serif;
+}
+
+.leaderboard-tabs {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+  margin: 50px 29px 0;
+  justify-content: space-evenly;
+}
+
+.active-a {
+    color: white;
+}
+
+.inactive-a {
+    color: black;
+}
+
+.tab-active {
+  border-radius: var(--sds-size-radius-200);
+  border: 1px solid #2c2c2c;
+  border-radius: 15px;
+  background-color:#2c2c2c;
+  padding: 12px 10px;
+}
+
+.tab-inactive {
+  border-radius: var(--sds-size-radius-200);
+  border: 1px solid #2c2c2c;
+  border-radius: 15px;
+  background-color: #f5f5f5;
+  padding: 12px;
+}
+
+.leaderboard-list {
+  border-radius: 20px;
+  background-color: #fff;
+  margin: 27px 23px 0 22px;
+  padding: 25px 24px;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.rank {
+  border: 2px solid #e6e6e6;
+  border-radius: 50%;
+  color: #858494;
+  text-align: center;
+  padding: 9px 17px;
+  font: 500 12px/150% Rubik, sans-serif;
+}
+
+.user-avatar {
+  width: 92px;
+  aspect-ratio: 1.02;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  color: #0c092a;
+  font: 500 16px/150% Rubik, sans-serif;
+  font-weight: 900;
+}
+
+.user-score {
+  color: white;
+  font: 400 14px/140% Rubik, sans-serif;
+}
+
+
+.activity-status {
+  margin-left: auto;
+  width: 150px;
+  text-align: center;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: #518369;
+}
+
+.activities-section {
+  width: auto;
+  background-color: #f7f9ff;
+  padding: 76px 60px;
+}
+
+.activities-container {
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.activities-title {
+  color: #000;
+  text-align: center;
+  font: 400 75px Inter, sans-serif;
+}
+
+.activity-cards {
+  margin-bottom: 125px;
+  padding: 37px 0;
+  padding-right: 100px;
+  padding-left: 100px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 20px 20px 20px 20px;
+}
+
+.activity-card {
+  width: 750px;
+  padding: 10px 0;
+}
+
+.activity-title {
+  color: #252b42;
+  letter-spacing: 0.2px;
+  font: 400 48px/55px Graphik, sans-serif;
+}
+
+.activity-description {
+  color: #374754;
+  letter-spacing: 0.2px;
+  margin-top: 27px;
+  font: 400 28px/40px Graphik, sans-serif;
+}
+
+.activity-cta {
+  padding: 1px 0 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cta-button {
+  border-radius: 35px;
+  background-color: #6223a9;
+  color: #fff;
+  letter-spacing: 0.1px;
+  padding: 16px 52px;
+  font: 400 20px/140% Rubik, sans-serif;
+}
+
+.cta-info {
+  color: #374754;
+  letter-spacing: 0.1px;
+  font: 400 20px/140% Rubik, sans-serif;
+
+}
+
+.activity-image {
+  width: 450px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.how-it-works {
+  padding-top: 80px;
+  background-color: #fff;
+}
+
+.how-it-works-content {
+  max-width: 976px;
+  margin: 22px auto 0;
+  padding: 0 60px 52px;
+  text-align: center;
+}
+
+.how-it-works-title {
+  color: #252b42;
+  font: 48px/115% Rubik, sans-serif;
+}
+
+.how-it-works-description {
+  color: #374754;
+  margin-top: 27px;
+  font: 28px/40px Rubik, sans-serif;
+}
+
+.features {
+  display: flex;
+  gap: 20px;
+  margin-top: 80px;
+}
+
+.feature {
+  flex: 1;
+  text-align: center;
+  padding: 0 12px;
+}
+
+.feature-icon {
+  width: 61px;
+  aspect-ratio: 1;
+}
+
+.feature-title {
+  color: #252b42;
+  letter-spacing: 0.1px;
+  margin-top: 20px;
+  font: 700 20px/28px Graphik, sans-serif;
+}
+
+.feature-description {
+  color: #374754;
+  letter-spacing: 0.2px;
+  margin-top: 20px;
+  font: 400 18px/25px Graphik, sans-serif;
+}
+
+.how-it-works-image {
+  width: 899px;
+  max-width: 100%;
+  margin-top: 132px;
+  aspect-ratio: 1.69;
+}
+
+.footer {
+  background-color: #252b42;
+  padding: 80px 60px;
+}
+
+.footer-content {
+  max-width: 954px;
+  margin: 70px auto 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  width: 200px;
+}
+
+.footer-title {
+  color: #fff;
+  letter-spacing: 0.1px;
+  font: 700 20px/140% Graphik, sans-serif;
+}
+
+.footer-link {
+  color: #fff;
+  font: 400 15px/28px Graphik, sans-serif;
+  margin-top: 16px;
+  display: block;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #fff;
+  font: 400 15px/27px Roboto, sans-serif;
+}
+
+.contact-icon {
+  width: 46px;
+  aspect-ratio: 1;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px 77px 20px 0;
+}
+
+.social-icon {
+  width: 40px;
+  aspect-ratio: 1;
+}
+
+.activity-a {
+    color: white;
+}
+

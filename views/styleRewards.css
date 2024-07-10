@@ -1,0 +1,22 @@
+.top-box{
+    border-style:solid ;
+    border-color: #CCC5F7;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+.buttom-box{
+    border-style:solid ;
+    border-color: #CCC5F7;
+    border-radius: 30px;
+    padding-bottom: 20px;
+}
+
+li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+* {
+    font-family: "Montserrat" !important;
+  }
